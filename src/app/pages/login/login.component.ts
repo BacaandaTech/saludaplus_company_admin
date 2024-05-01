@@ -29,7 +29,8 @@ export class LoginComponent {
     email: new FormControl('', [Validators.required,Validators.email]),
     password: new FormControl('', Validators.required)
   });
-
+  public forgot_password_view: Boolean = false;
+  public password_recover_view: Boolean = false;
   private unsuscribe$: Subject<void> = new Subject();
 
   @ViewChild('autoShownModal', { static: false }) autoShownModal?: ModalDirective;
@@ -71,5 +72,18 @@ export class LoginComponent {
     this.encryptService.saveData("user",JSON.stringify(response.user));
     this.encryptService.saveData("permissions",JSON.stringify(response.user.permissions))
     localStorage.setItem("expires_in", JSON.stringify(Date.now() + response.expires_in ));
-  }  
+  }
+  forgotPasswordAction(): void {
+    const form_data: FormData = new FormData()
+    form_data.append('email', this.frmLogin.value.email ?? '')
+
+    this.authService.sendRecoverPassword(form_data).subscribe({
+      next: (response: any) => {
+        this.password_recover_view = true;
+      },
+      error: (error: HttpErrorResponse) => {
+        console.log(error.error.message)
+      }
+    })
+  }
 }

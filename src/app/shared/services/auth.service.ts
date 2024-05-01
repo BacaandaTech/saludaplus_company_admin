@@ -19,6 +19,9 @@ export class AuthService {
   login(credentials: AuthCredentials) {
     return this.http.getQuery('post', 'user/login', credentials).pipe(map((resp) => resp as any));
   }
+  updateProfile(form_data: FormData) {
+    return this.http.getQuery('post','profile/update', form_data);
+  }
 
   isUserLoggedIn() {
     const currentUser = localStorage.getItem('token');
@@ -34,5 +37,8 @@ export class AuthService {
   logout() {
     localStorage.clear();
     this.router.navigateByUrl('login');
+  }
+  sendRecoverPassword(form_data: FormData) {
+    return this.http.getQuery('post', 'user/send-recover-password', form_data)
   }
 }

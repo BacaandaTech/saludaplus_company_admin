@@ -19,6 +19,7 @@ import { AmountComponent } from './shared/components/amount/amount.component';
 import { OnlyNumbersDirective } from './only-numbers.directive';
 import { RegisterComponent } from './pages/register/register.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { SettingsComponent } from './pages/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     AmountComponent,
     OnlyNumbersDirective,
     RegisterComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,

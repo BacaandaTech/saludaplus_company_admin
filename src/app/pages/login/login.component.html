@@ -7,7 +7,7 @@
              <h4 class="modal-title text-center">Inicio de sesión</h4>
            </div>
            <div class="modal-body">
-             <form [formGroup]="frmLogin" (ngSubmit)="handleLogin()" #myForm="ngForm">
+             <form [formGroup]="frmLogin" (ngSubmit)="handleLogin()" #myForm="ngForm" *ngIf="!forgot_password_view">
                <div class="row justify-content-center align-items-center g-2">
                  <div class="col">
                    <label for="email" class="form-label">Nombre de usuario</label>
@@ -26,7 +26,33 @@
                    <button class="btn btn-login btn-rounded ms-0 ms-md-4" [routerLink]="['/register']">Crear Cuenta</button>
                  </div>
                </div>
+               <strong class="w-100 text-center">
+
+                <a class="d-block mt-3 cursor-pointer forgot-password" (click)="forgot_password_view = true">¿Olvidaste la contraseña?</a>
+              </strong>
              </form>
+
+             <form class="px-4 py-3" (ngSubmit)="forgotPasswordAction()" [formGroup]="frmLogin" *ngIf="forgot_password_view && !password_recover_view">
+              <div class="mb-3">
+                <h4>Recupera tu cuenta</h4>
+                <p>	Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
+                <label for="exampleDropdownFormEmail1" class="form-label">Email address</label>
+                <input formControlName="email" type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+              </div>
+              <div class="d-flex justify-content-center flex-wrap">
+                <button type="submit" class="btn btn-primary btn-rounded" [disabled]="frmLogin.invalid">Enviar link de recuperación</button>
+                <strong class="w-100 text-center">
+                  <a class="mt-3 d-block cursor-pointer forgot-password" (click)="forgot_password_view = false">< Regresar</a>
+                </strong>
+              </div>
+              
+            </form>
+        
+            <div *ngIf="password_recover_view">
+              <h4>Recupera tu cuenta</h4>
+              <p>Se ha enviado un email a la cuenta <strong>{{frmLogin.value.email}}</strong>, con el link para recuperar tu cuenta.</p>
+              <a class="mt-3 d-block cursor-pointer forgot-password" (click)="forgot_password_view = false; password_recover_view = false;">< Regresar</a>
+            </div>
            </div>
          </div>
        </div>

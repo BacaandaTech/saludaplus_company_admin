@@ -81,10 +81,17 @@ export class EditUserComponent implements OnInit{
   }
 
   updateUser() {
-    let formData = toFormData(this.frmEditUser.value);
-    formData.set('birthday', formatDate(this.frmEditUser.controls['birthday'].value!));
+    const data = {
+      first_name: this.frmEditUser.controls['first_name'].value,
+      last_name: this.frmEditUser.controls['last_name'].value,
+      second_last_name: this.frmEditUser.controls['second_last_name'].value,
+      email: this.frmEditUser.controls['email'].value,
+      birthday: this.frmEditUser.controls['birthday'].value,
+      department: this.frmEditUser.controls['department'].value,
+      role: this.frmEditUser.controls['role'].value
+    }
 
-    this.userService.updateUser(this.idUser,formData).subscribe({
+    this.userService.updateUser(this.idUser, data).subscribe({
       next: (response) => {
         this.modalService.openConfirmModal("El usuario ha sido actualizado correctamente");
       },
