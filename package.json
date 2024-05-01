@@ -6,6 +6,8 @@
     "start": "ng serve --poll=2000",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "development": "ng build --configuration development",
+    "production": "ng build --configuration production",
     "test": "ng test"
   },
   "private": true,

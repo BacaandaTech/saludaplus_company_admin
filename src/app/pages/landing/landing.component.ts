@@ -35,7 +35,7 @@ export class LandingComponent {
     {
       label:'Configuracion',
       permission:"edit_profile",
-      url:'',
+      url: '/settings',
       icon:'config.svg'
     },
     {

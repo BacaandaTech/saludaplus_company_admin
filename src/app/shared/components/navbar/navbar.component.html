@@ -8,8 +8,8 @@
       <img [src]="avatar_user" id="button-basic" dropdownToggle type="button" aria-controls="dropdown-basic"/>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-left" role="menu" aria-labelledby="button-basic">
         <li class="cursor-pointer"><a class="dropdown-item" [routerLink]='["/payment-method"]'>Membresías</a></li>
+        <li class="cursor-pointer"><a class="dropdown-item" [routerLink]='["/settings"]'>Configuración</a></li>
         <li class="cursor-pointer"><a class="dropdown-item" (click)="logoutAction()">Cerrar sesión</a></li>
-        <li class="cursor-pointer"><a class="dropdown-item" [routerLink]='["/configuracion"]'>Configuración</a></li>
       </ul>
     </span>
   </div>

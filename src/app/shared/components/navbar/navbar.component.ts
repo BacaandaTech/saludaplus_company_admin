@@ -33,6 +33,7 @@ export class NavbarComponent {
     this.authSubscription = this.auth_service.currentAuth.subscribe((auth_status) => {
       this.has_session = auth_status;
       if (this.user_data) { 
+        this.user_data = JSON.parse(this.encryptService.getData('user'));
         this.name_user = this.user_data.meta.name.toUpperCase();
         this.avatar_user = this.user_data.meta.avatar ? this.user_data.meta.avatar : '../assets/img/logo/avatar-default.png'
       }
