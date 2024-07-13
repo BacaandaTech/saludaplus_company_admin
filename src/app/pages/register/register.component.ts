@@ -48,7 +48,7 @@ export class RegisterComponent {
 
   public info_physic_form = new FormGroup({
     rfc: new FormControl('', Validators.required),
-    is_beneficiary: new FormControl(''),
+    is_beneficiary: new FormControl(false),
   });
 
   public address_form = new FormGroup({
@@ -72,7 +72,6 @@ export class RegisterComponent {
   }
   createAccount(): void {
     const form_data: FormData = new FormData();
-
     form_data.append('first_name', this.owner_form.value.name ?? '');
     form_data.append('last_name', this.owner_form.value.lastname ?? '');
     form_data.append('second_last_name', this.owner_form.value.second_lastname ?? '');
@@ -93,6 +92,7 @@ export class RegisterComponent {
       form_data.append('rfc', this.info_physic_form.value.rfc ?? '');
       const fullname = `${this.owner_form.value.name} ${this.owner_form.value.lastname} ${this.owner_form.value.second_lastname}`
       form_data.append('brand_name', fullname);
+      if (this.info_physic_form.value.is_beneficiary) form_data.append('is_beneficiary', '1');
     }
 
     form_data.append('street', this.address_form.value.street ?? '');
