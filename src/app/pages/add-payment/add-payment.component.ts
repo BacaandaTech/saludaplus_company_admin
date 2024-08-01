@@ -29,25 +29,25 @@ export class AddPaymentComponent {
   public memberships: IMembership[] = [
     {
       name: 'CLUB SALUDA+',
-      price: '$2,640 anual',
+      price: '$3,598 anual',
       alternative_name: 'Anual 2 pagos',
-      per_price: '$220 MXM / mes',
-      frequency_payment: '2 pagos de $1,320',
+      per_price: '$299 MXM / mes',
+      frequency_payment: '2 pagos de $1,799',
       frequency_payment_down_text: 'Mes 1 y mes 7',
       amount: 0,
       has_month: true,
-      value: 1320,
+      value: 1799,
     },
     {
       name: 'CLUB SALUDA+',
-      price: '$2,199 anual',
+      price: '$3,199 anual',
       alternative_name: 'Anual 1 pago',
       per_price: '2 meses gratis',
       frequency_payment: '1 solo pago',
-      frequency_payment_down_text: '$183.25 MXM / mes',
+      frequency_payment_down_text: '$266.58 MXM / mes',
       amount: 0,
       has_year: true,
-      value: 2199,
+      value: 3199,
     }
   ]
 
@@ -103,6 +103,26 @@ export class AddPaymentComponent {
         }
       }, 100);
     });
+  }
+  addMonths(date: any, months: any) {
+      const d = new Date(date);
+      d.setMonth(d.getMonth() + months);
+
+      if (d.getDate() !== date.getDate()) {
+          d.setDate(0);
+      }
+      return d;
+  }
+
+  formatDate(date: any) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      return date.toLocaleDateString('es-ES', options);
+  }
+
+  getFutureDateInSevenMonths() {
+    const today = new Date();
+    const futureDate = this.addMonths(today, 7);
+    return this.formatDate(futureDate);
   }
   
   createAndMountElements(elements: any): void {
