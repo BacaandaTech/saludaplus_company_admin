@@ -47,7 +47,7 @@ export class RegisterComponent {
   });
 
   public info_physic_form = new FormGroup({
-    rfc: new FormControl('', Validators.required),
+    rfc: new FormControl(''),
     is_beneficiary: new FormControl(false),
   });
 
