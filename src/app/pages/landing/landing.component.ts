@@ -15,17 +15,11 @@ export class LandingComponent {
 
    AVAILABLE_MENUS = [
     {
-      label:'Mis polizas',
+      label:'Mis membresías',
       permission:"manage_policy",
-      url:'/policies/list',
+      url:'/memberships/list',
       icon:'shield.svg'
     },
-    /* {
-      label:'Facturacion',
-      permission:"list_billing",
-      url:'',
-      icon:'card.svg'
-    }, */
     {
       label:'Colaboradores',
       permission:"list_collaborators",

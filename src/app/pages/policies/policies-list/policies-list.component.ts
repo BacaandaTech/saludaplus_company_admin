@@ -27,8 +27,8 @@ export class PoliciesListComponent implements OnInit{
       label:'Inicio'
     },
     {
-      url:'/policies/list',
-      label:'Polizas'
+      url:'/memberships/list',
+      label:'Membresías'
     },
   ];
 
@@ -39,7 +39,7 @@ export class PoliciesListComponent implements OnInit{
       headerClass:'table-header'
     },
     {
-      headerName: 'POLIZAS',
+      headerName: 'MEMBRESÍAS',
       headerClass:'table-header',
       cellRenderer: (params:any) => {
         return params.data.policy.folio;
