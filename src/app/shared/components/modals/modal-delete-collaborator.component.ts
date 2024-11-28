@@ -10,7 +10,7 @@ import { ModalService } from '../../services/modal.service';
       </div>
       <div class="modal-body">
         <p class="text-center modal-body-text m-0">
-          Si eliminas al colaborador {{data.meta.last_name}} {{data.meta.second_last_name}} {{data.meta.name}} todas las polizas asignadas a este seran liberadas.  ¿ Estas seguro de querer eliminar a este colaborador ?
+          Si eliminas al colaborador {{data.meta.last_name}} {{data.meta.second_last_name}} {{data.meta.name}} todas las membresías asignadas a este seran liberadas.  ¿ Estas seguro de querer eliminar a este colaborador ?
         </p>
       </div>
       <div class="modal-footer">

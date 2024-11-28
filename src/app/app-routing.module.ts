@@ -45,7 +45,7 @@ const routes: Routes = [
   },
   
   { 
-    path: 'policies', 
+    path: 'memberships', 
     loadChildren: () => import('./pages/policies/policies.module').then(m => m.PoliciesModule),
     canActivate:[AuthGuard]
   },

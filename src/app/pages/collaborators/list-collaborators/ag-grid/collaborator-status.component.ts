@@ -46,7 +46,7 @@ export class CollaboratorStatusComponent implements ICellRendererAngularComp {
 
         this.policiesService.assignPolicy(formData).subscribe({
             next: (response) => {
-                this.modalService.openConfirmModal("La poliza ha sido asignada correctamente");
+                this.modalService.openConfirmModal("La membresía ha sido asignada correctamente");
                 this.collabService.setCurrentUpdateStatus(true);
             },
             error: (err) => {
