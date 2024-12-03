@@ -67,6 +67,13 @@ export class RegisterComponent {
   backTab(): void {
     this.tabs_model -= 1;
   }
+  handleCorrectUrl() {
+    let url = this.info_moral_form.value.web ?? '';
+    if (!url.startsWith('http://') && !url.startsWith('https://')) {
+      url = 'https://' + url;
+    }
+    return url;
+  }
   handleFileInput(event: any): void {
     this.logo = event.target.files[0];
   }
@@ -87,7 +94,11 @@ export class RegisterComponent {
       form_data.append('brand_name', this.info_moral_form.value.company ?? '');
       form_data.append('rfc', this.info_moral_form.value.rfc ?? '');
       if (this.logo) form_data.append('logo', this.logo);
-      if (this.info_moral_form.value.web) form_data.append('url', this.info_moral_form.value.web ?? '');
+      if (this.info_moral_form.value.web) {
+        const url = this.handleCorrectUrl()
+        form_data.append('url', url ?? '');
+
+      }
     } else {
       form_data.append('rfc', this.info_physic_form.value.rfc ?? '');
       const fullname = `${this.owner_form.value.name} ${this.owner_form.value.lastname} ${this.owner_form.value.second_lastname}`
