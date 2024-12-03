@@ -10,7 +10,6 @@ import { ModalService } from "src/app/shared/services/modal.service";
     template: `
         <div class="d-flex justify-content-between align-items-center actions-container">
             <img class="actions-item" src="assets/img/icons/edit.svg" alt="" (click)="goToEdit()">
-            <img class="actions-item" src="assets/img/icons/info.svg" alt="">
             <img class="actions-item" src="assets/img/icons/delete.svg" alt="" (click)="deleteCollaborator()">
         </div>
     `,
