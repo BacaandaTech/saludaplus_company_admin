@@ -6,6 +6,7 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { AddPaymentComponent } from './pages/add-payment/add-payment.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { SettingsComponent } from './pages/settings/settings.component';
+import { RecoverPasswordComponent } from './pages/recover-password/recover-password.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
     path: 'payment-method',
     component: AddPaymentComponent,
     canActivate: [AuthGuard]
+  },
+  { 
+    path: 'restablecer/password', 
+    component: RecoverPasswordComponent,
   },
   {
     path: 'settings',

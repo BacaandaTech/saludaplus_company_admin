@@ -57,4 +57,7 @@ export class usersService {
   registerUser(form_data: FormData) {
     return this.http.getQuery('post', 'user/register/', form_data).pipe(map((resp) => resp as any));
   }
+  recoverPasswrod(form_data: FormData) {
+    return this.http.getQuery('post', 'user/recover-password', form_data)
+  }
 }
