@@ -17,9 +17,15 @@
           Oxxo
         </label>
       </div>
+      <div class="form-check me-3">
+        <input class="form-check-input" value="transfer" type="radio" name="flexRadioDefault" id="flexRadioDefault2" [(ngModel)]="type_payment">
+        <label class="form-check-label" for="flexRadioDefault2">
+          Transferencia
+        </label>
+      </div>
     </div>
     
-    <div *ngIf="type_payment === 'card';else oxxo_template">
+    <div *ngIf="type_payment === 'card'">
       <div class="mb-4">
           <label for="card-number">Numero de tarjeta</label>
           <div id="card" class="card-number"></div>
@@ -47,7 +53,7 @@
       </div>
     </div>
 
-    <ng-template #oxxo_template>
+    <div *ngIf="type_payment === 'oxxo'">
       <form [formGroup]="oxxo_form" class="row">
         <div class="col-12 mb-4">
           <label for="card-number">Nombre*</label>
@@ -58,7 +64,14 @@
           <input type="text" placeholder="email@emai.com" class="card-number w-100" formControlName="email"/>
         </div>
       </form>
-    </ng-template>
+    </div>
+
+    <div *ngIf="type_payment === 'transfer'">
+      <div>
+        Para realizar tu pago por transferencia bancaria, comunícate con nosotros al WhatsApp <strong>+52 446 117 6926</strong> y te brindaremos los detalles necesarios. ¡Estamos aquí para ayudarte! 
+        <a class="btn btn-login btn-rounded w-100 mt-3" href="https://wa.me/14461176926?text=%C2%A1Hola!%20Quiero%20hacer%20una%20compra%20por%20transferencia." target="_blank">Abrir Whatsapp</a>
+      </div>
+    </div>
   </div>
 
   <div class="col-12 col-lg-6 mb-4">
