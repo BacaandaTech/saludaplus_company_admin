@@ -22,7 +22,7 @@ export class EditUserComponent implements OnInit{
       label: 'Usuarios'
     },
     {
-      url: '',
+      url: `/users/edit/${this.route.snapshot.params['id_user']}`,
       label: 'Editar Usuario'
     },
   ];
