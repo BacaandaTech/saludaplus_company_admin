@@ -18,7 +18,8 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "allowedCommonJsDependencies":[
-              "moment/moment"
+              "moment/moment",
+              "crypto-js"
             ],
             "outputPath": "dist/saluda-plus-user-admin",
             "index": "src/index.html",
@@ -43,7 +44,7 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "1mb",
+                  "maximumWarning": "2mb",
                   "maximumError": "2mb"
                 },
                 {

@@ -10,7 +10,7 @@
         <div class="col-12 col-md-6 mb-2 mb-sm-0">
           <div class="margin-negative-for-avatar">
             <div class="main-avatar-user-container" (click)="addAvatar()">
-              <img [src]="user?.meta?.avatar" alt="profile-image" [ngClass]="getUserClassAvatar()">
+              <img *ngIf="user.meta.avatar" [src]="user.meta.avatar" alt="profile-image" [ngClass]="getUserClassAvatar()">
             </div>
           </div>
         </div>
