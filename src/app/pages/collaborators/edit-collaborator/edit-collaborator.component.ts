@@ -20,11 +20,13 @@ export class EditCollaboratorComponent implements OnInit {
     },
     {
       url: '/collaborators/list',
-      label: 'Colaboradores'
+      label: 'Colaboradores',
+      queryParams: { ...this.route.snapshot.queryParams }
     },
     {
-      url: '',
-      label: 'Editar'
+      url: `/collaborators/edit/${this.route.snapshot.params['id_collab']}`,
+      label: 'Editar',
+      queryParams: { ...this.route.snapshot.queryParams }
     },
   ];
 
@@ -80,7 +82,6 @@ export class EditCollaboratorComponent implements OnInit {
     if(this.idCollab){
       this.collabService.detailCollaborator(this.idCollab).subscribe({
         next:(response:any) =>{
-          console.log(response.data.user);
           this.frmEditCollaborator.patchValue({
             first_name: response.data.user.meta.name,
             last_name: response.data.user.meta.last_name,
@@ -111,8 +112,7 @@ export class EditCollaboratorComponent implements OnInit {
       next: (response) => {
         this.modalService.openConfirmModal("El colaborador ha sido actualizado correctamente");
       },
-      error: (err) => {
-        console.log(err)
+      error: () => {
       }
     });
   }

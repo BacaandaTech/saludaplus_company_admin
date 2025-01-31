@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CONFIG_DATE_PICKER } from 'src/app/shared/interfaces/utils.interface';
 import { ModalService } from 'src/app/shared/services/modal.service';
 import { usersService } from 'src/app/shared/services/users.service';
-import { formatDate, toFormData } from 'src/app/shared/services/utils.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -19,11 +18,13 @@ export class EditUserComponent implements OnInit{
     },
     {
       url: '/users/list',
-      label: 'Usuarios'
+      label: 'Usuarios',
+      queryParams: { ...this.route.snapshot.queryParams }
     },
     {
       url: `/users/edit/${this.route.snapshot.params['id_user']}`,
-      label: 'Editar Usuario'
+      label: 'Editar Usuario',
+      queryParams: { ...this.route.snapshot.queryParams }
     },
   ];
 
@@ -66,7 +67,6 @@ export class EditUserComponent implements OnInit{
     this.idUser = this.route.snapshot.paramMap.get('id_user');
     this.userService.detailUser(this.idUser).subscribe({
       next:(response) =>{
-        console.log(response.data)
         this.frmEditUser.patchValue({
           first_name: response.data.user.meta.name,
           last_name: response.data.user.meta.last_name,
@@ -95,8 +95,7 @@ export class EditUserComponent implements OnInit{
       next: (response) => {
         this.modalService.openConfirmModal("El usuario ha sido actualizado correctamente");
       },
-      error: (err) => {
-        console.log(err)
+      error: () => {
       }
     });
   }

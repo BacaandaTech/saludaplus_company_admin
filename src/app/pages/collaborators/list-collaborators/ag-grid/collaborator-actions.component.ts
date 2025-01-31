@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from "ag-grid-community";
 import { ModalService } from "src/app/shared/services/modal.service";
@@ -33,8 +33,8 @@ export class CollaboratorActionsComponent implements ICellRendererAngularComp {
     public params!: ICellRendererParams;
 
     constructor(
-       
-        private router: Router,
+        private route: ActivatedRoute,
+        private router: Router, 
         private modalService:ModalService
     ) { }
 
@@ -54,6 +54,7 @@ export class CollaboratorActionsComponent implements ICellRendererAngularComp {
     }
 
     goToEdit(){
-        this.router.navigateByUrl('/collaborators/edit/'+this.params.data.meta.id)
+        const queryParams = { ...this.route.snapshot.queryParams };
+        this.router.navigate(['/collaborators/edit', this.params.data.meta.id], { queryParams });
     }
 }

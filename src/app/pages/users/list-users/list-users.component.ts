@@ -6,7 +6,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { BUTTON_ACTIONS, IButtonDetails } from 'src/app/shared/interfaces/utils.interface';
 import { usersService } from 'src/app/shared/services/users.service';
 import { UserActionsComponent } from './ag-grid/user-actions.component';
-
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-list-users',
   templateUrl: './list-users.component.html',
@@ -30,7 +30,8 @@ export class ListUsersComponent {
     },
     {
       url:'/users/list',
-      label:'Usuarios'
+      label:'Usuarios',
+      queryParams: { ...this.route.snapshot.queryParams }
     },
   ];
 
@@ -86,7 +87,9 @@ export class ListUsersComponent {
   public updateDataSubscription:Subscription;
 
   constructor(
-    private userService:usersService
+    private userService:usersService,
+    private router:Router,
+    private route:ActivatedRoute
   ) { 
     this.updateDataSubscription = this.userService.currentStatusUpdateUsers
     .pipe(takeUntil(this.unsuscribe$))
@@ -100,7 +103,24 @@ export class ListUsersComponent {
   }
 
   ngOnInit(): void {
+    // Get page from query params
+    this.updatePage();
+
+    // Get users
     this.getUsers();
+  }
+
+  // Update query params
+  updatePage() {
+    const queryParams = { ...this.route.snapshot.queryParams };
+    if (!queryParams['page']) queryParams['page'] = this.currentPage;
+    else this.currentPage = queryParams['page'];
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge'
+    });
   }
 
   ngOnDestroy(): void {
@@ -139,6 +159,14 @@ export class ListUsersComponent {
 
   loadPage(event: PageChangedEvent):void{
     this.currentPage = event.page;
+
+    // Updating query params
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { ...this.route.snapshot.queryParams, page: this.currentPage },
+      queryParamsHandling: 'merge'
+    });
+
     this.getUsers(this.searchValue);
   }
 }

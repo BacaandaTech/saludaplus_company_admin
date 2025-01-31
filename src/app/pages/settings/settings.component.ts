@@ -5,16 +5,22 @@ import { CONFIG_TOAST } from 'src/app/shared/interfaces/utils.interface';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { EncryptService } from 'src/app/shared/services/encrypt.service';
 import { ModalService } from 'src/app/shared/services/modal.service';
-
-declare var bootstrap: any;
-
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  styleUrls: ['./settings.component.scss'],
 })
 export class SettingsComponent implements OnInit {
-
+  public links:any =[
+    {
+      url:'/main',
+      label:'Inicio'
+    },
+    {
+      url:'/settings',
+      label:'Configuración',
+    },
+  ];
   public file_uploaded: File | null;
   public user = {
     email: '',

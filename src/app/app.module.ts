@@ -21,7 +21,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { SettingsComponent } from './pages/settings/settings.component';
 import { RecoverPasswordComponent } from './pages/recover-password/recover-password.component';
-
+import { SharedModule } from './shared/modules/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +46,7 @@ import { RecoverPasswordComponent } from './pages/recover-password/recover-passw
     BsDropdownModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
