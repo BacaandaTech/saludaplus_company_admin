@@ -25,6 +25,16 @@ export class AddPaymentComponent {
   public loader: boolean = false;
   public success_transaction: boolean = false;
   public reference_seller: string = '';
+  public links:any =[
+    {
+      url:'/main',
+      label:'Inicio'
+    },
+    {
+      url:'/payment-method',
+      label:'Membresías',
+    },
+  ];
 
   public memberships: IMembership[] = [
     {

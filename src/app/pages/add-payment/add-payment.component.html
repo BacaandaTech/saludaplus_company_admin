@@ -1,3 +1,4 @@
+<app-breadcrumb [searchBar]="false" [links]="links"></app-breadcrumb>
 <div class="row p-3 p-md-4" *ngIf="!success_transaction">
   <app-loader *ngIf="loader"></app-loader>
   <div class="payment-box col-12 col-lg-6 mb-4">
@@ -5,21 +6,21 @@
     <h1 class="mb-4">Selecciona método de pago</h1>
 
     <div class="d-flex flex-wrap w-100 mb-4">
-      <div class="form-check me-3">
-        <input class="form-check-input" value="card" type="radio" name="flexRadioDefault" id="flexRadioDefault1" [(ngModel)]="type_payment">
-        <label class="form-check-label" for="flexRadioDefault1">
+      <div class="form-check me-3 cursor-pointer">
+        <input class="form-check-input cursor-pointer" value="card" type="radio" name="flexRadioDefault" id="flexRadioDefault1" [(ngModel)]="type_payment">
+        <label class="form-check-label cursor-pointer" for="flexRadioDefault1">
           Tarjeta de crédito
         </label>
       </div>
-      <div class="form-check me-3">
-        <input class="form-check-input" value="oxxo" type="radio" name="flexRadioDefault" id="flexRadioDefault2" [(ngModel)]="type_payment">
-        <label class="form-check-label" for="flexRadioDefault2">
+      <div class="form-check me-3 cursor-pointer">
+        <input class="form-check-input cursor-pointer" value="oxxo" type="radio" name="flexRadioDefault" id="flexRadioDefault2" [(ngModel)]="type_payment">
+        <label class="form-check-label cursor-pointer" for="flexRadioDefault2">
           Oxxo
         </label>
       </div>
-      <div class="form-check me-3">
-        <input class="form-check-input" value="transfer" type="radio" name="flexRadioDefault" id="flexRadioDefault2" [(ngModel)]="type_payment">
-        <label class="form-check-label" for="flexRadioDefault2">
+      <div class="form-check me-3 cursor-pointer">
+        <input class="form-check-input cursor-pointer" value="transfer" type="radio" name="flexRadioDefault" id="flexRadioDefault3" [(ngModel)]="type_payment">
+        <label class="form-check-label cursor-pointer" for="flexRadioDefault3">
           Transferencia
         </label>
       </div>
