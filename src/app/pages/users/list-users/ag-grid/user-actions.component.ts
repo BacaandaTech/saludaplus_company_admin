@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { ICellRendererAngularComp } from 'ag-grid-angular';
 import { ICellRendererParams } from "ag-grid-community";
 import { ModalService } from "src/app/shared/services/modal.service";
+import { ActivatedRoute } from "@angular/router";
 
 
 @Component({
@@ -35,7 +36,8 @@ export class UserActionsComponent implements ICellRendererAngularComp {
     constructor(
        
         private router: Router,
-        private modalService:ModalService
+        private modalService:ModalService,
+        private route: ActivatedRoute,
     ) { }
 
     // gets called once before the renderer is used
@@ -53,7 +55,8 @@ export class UserActionsComponent implements ICellRendererAngularComp {
         this.modalService.openDeleteUserModal(this.params.data);
     }
 
-    goToEdit(){
-        this.router.navigateByUrl('/users/edit/'+this.params.data.meta.id)
+    goToEdit() {
+        const queryParams = { ...this.route.snapshot.queryParams };
+        this.router.navigate(['/users/edit', this.params.data.meta.id], { queryParams });
     }
 }

@@ -2,7 +2,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb my-3">
             <li class="breadcrumb-item" *ngFor="let link of links">
-                <a [routerLink]='[link.url]'>{{link.label}}</a>
+                <a [routerLink]='[link.url]' [queryParams]="link.queryParams">{{link.label}}</a>
             </li>
         </ol>
     </nav>

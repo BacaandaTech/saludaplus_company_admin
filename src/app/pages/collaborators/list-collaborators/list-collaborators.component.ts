@@ -7,6 +7,7 @@ import { CollaboratorStatusComponent } from './ag-grid/collaborator-status.compo
 import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 import { CollaboratorActionsComponent } from './ag-grid/collaborator-actions.component';
 import { BUTTON_ACTIONS, IButtonDetails } from 'src/app/shared/interfaces/utils.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-collaborators',
@@ -16,7 +17,7 @@ import { BUTTON_ACTIONS, IButtonDetails } from 'src/app/shared/interfaces/utils.
 export class ListCollaboratorsComponent {
   public currentPage: number = 1;
   public totalCollaborators!: number;
-  public collaboratorsPerPage: number = 10;
+  public collaboratorsPerPage: number = 1;
 
   private unsuscribe$: Subject<void> = new Subject();
 
@@ -31,7 +32,8 @@ export class ListCollaboratorsComponent {
     },
     {
       url:'/collaborators/list',
-      label:'Colaboradores'
+      label:'Colaboradores',
+      queryParams: { ...this.route.snapshot.queryParams }
     },
   ];
 
@@ -93,7 +95,9 @@ export class ListCollaboratorsComponent {
   public updateDataSubscription:Subscription;
 
   constructor(
-    private collaboratorsService:CollaboratorsService
+    private collaboratorsService:CollaboratorsService,
+    private route: ActivatedRoute,
+    private router:Router,
   ) { 
     this.updateDataSubscription = this.collaboratorsService.currentStatusUpdateComunicates
     .pipe(takeUntil(this.unsuscribe$))
@@ -107,13 +111,29 @@ export class ListCollaboratorsComponent {
   }
 
   ngOnInit(): void {
+    // Get page from query params
+    this.updatePage();
+
+    // Get collaboratos
     this.getCollaborators();
-    
   }
 
   ngOnDestroy(): void {
     this.unsuscribe$.next();
     this.unsuscribe$.unsubscribe()
+  }
+
+  // Update query params
+  updatePage() {
+    const queryParams = { ...this.route.snapshot.queryParams };
+    if (!queryParams['page']) queryParams['page'] = this.currentPage;
+    else this.currentPage = queryParams['page'];
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: queryParams,
+      queryParamsHandling: 'merge'
+    });
   }
 
   handleSearchValue(value:any){
@@ -147,6 +167,14 @@ export class ListCollaboratorsComponent {
 
   loadPage(event: PageChangedEvent):void{
     this.currentPage = event.page;
+
+    // Updating query params
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { ...this.route.snapshot.queryParams, page: this.currentPage },
+      queryParamsHandling: 'merge'
+    });
+    
     this.getCollaborators(this.searchValue);
   }
 }
